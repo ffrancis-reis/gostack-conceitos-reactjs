@@ -13,26 +13,24 @@ function App() {
   });
 
   async function handleAddRepository() {
-    await api
-      .post("/repositories", {
-        title: "first aws cloud app",
-        url: "https://github.com/ffrancis-reis/private-blockchain-application",
-        techs: ["cloud", "aws", "app"],
-      })
-      .then((response) => {
-        setRepositories([...repositories, response.data]);
-      });
+    await api.post("/repositories", {
+      title: "first aws cloud app",
+      url: "https://github.com/ffrancis-reis/private-blockchain-application",
+      techs: ["cloud", "aws", "app"],
+    });
+
+    // const repo = response.data;
+
+    // setRepositories([...repositories, repo]);
   }
 
   async function handleRemoveRepository(id) {
-    await api.delete(`/repositories/${id}`).then((response) => {
-      if (response.status === 204) {
-        setRepositories([
-          ...repositories,
-          repositories.filter((repo) => repo.id !== id),
-        ]);
-      }
-    });
+    await api.delete(`/repositories/${id}`);
+
+    // setRepositories([
+    //   ...repositories,
+    //   repositories.filter((repo) => repo.id !== id),
+    // ]);
   }
 
   return (
